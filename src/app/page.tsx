@@ -1,25 +1,28 @@
-"use client"; // <- Important! must be first line
+// <- Important! must be first line
 
 import { SignUpButton, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import Header from "@/components/landing/Header";
+import Hero from "@/components/landing/Hero";
+import HowItWorks from "@/components/landing/HowItWorks";
+import WhatToAsk from "@/components/landing/WhatToAsk";
+import PricingSection from "@/components/landing/PricingSection";
+import CTA from "@/components/landing/CTA";
+import Footer from "@/components/landing/Footer";
 
 export default function Home() {
-  const { isSignedIn } = useUser(); // now works on client
-
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="min-h-screen bg-background">
 
-      {isSignedIn ? (
-        // Show only Sign Out when logged in
-        <SignOutButton>Log Out</SignOutButton>
-      ) : (
-        // Show Sign In and Sign Up when logged out
-        <>
-          <SignInButton mode="modal">Sign In</SignInButton>
-          <br></br>
-          <SignUpButton mode="modal">Sign Up</SignUpButton>
-        </>
-      )}
+      <Header />
+      <Hero />
+      <HowItWorks />
+      <WhatToAsk />
+      <PricingSection />
+      <CTA />
+      <Footer />  
+      
+
+
     </div>
   );
 }
