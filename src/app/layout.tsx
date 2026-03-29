@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import UserSync from "@/components/UserSync";
 
 
 const geistSans = Geist({
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DentWise - AI Powered Dental Assistant",
   description:
-    "Get instant dental advice through voice calls with our AI assistant. Avaiable 24/7.",
+    "Get instant dental advice through voice calls with our AI assistant. Available 24/7.",
 };
 
 export default function RootLayout({
@@ -41,6 +42,7 @@ export default function RootLayout({
       >
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+            <UserSync />
             {children}
           </body>
         </html>

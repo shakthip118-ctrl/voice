@@ -37,7 +37,7 @@ model Doctor {
   phone       String
   speciality  String
   bio         String?
-  imageUrl    String
+  imageUrl    String?
   gender      Gender
   isActive    Boolean @default(true)
   createdAt   DateTime @default(now())
