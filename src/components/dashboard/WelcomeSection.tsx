@@ -2,6 +2,13 @@ import Image from "next/image";
 
 import { currentUser } from "@clerk/nextjs/server";
 
+/**
+ * Renders a personalized dashboard welcome card with status and logo.
+ *
+ * Displays a time-of-day greeting ("morning", "afternoon", or "evening") that includes the current user's first name, an "Online & Ready" status pill with a pulsing indicator, a short descriptive paragraph about the AI dental assistant, and a circular logo shown on large viewports.
+ *
+ * @returns The JSX element for the dashboard welcome section.
+ */
 export default async function WelcomeSection() {
   const user = await currentUser();
 

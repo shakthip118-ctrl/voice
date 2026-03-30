@@ -6,6 +6,13 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
+/**
+ * Render a dashboard card that summarizes the user's dental appointment statistics and membership start date.
+ *
+ * Displays completed visits, total appointments, and a "Member Since" month, and includes call-to-action buttons for the AI assistant and booking appointments.
+ *
+ * @returns The component's JSX element representing the dental health overview card.
+ */
 async function DentalHealthOverview() {
   const appointmentStats = await getUserAppointmentStats();
   const user = await currentUser();

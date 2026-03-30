@@ -3,6 +3,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
+/**
+ * Renders a card showing that there are no upcoming appointments with a call-to-action button linking to `/appointments`.
+ *
+ * @returns The JSX element for the empty-state "Next Appointment" card.
+ */
 function NoNextAppointments() {
   return (
     <Card>
