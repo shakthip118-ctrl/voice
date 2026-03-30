@@ -4,6 +4,13 @@ import NoNextAppointments from "./NoNextAppointments";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
 
+/**
+ * Renders a "Next Appointment" card for the user's next confirmed appointment.
+ *
+ * Filters the user's appointments to confirmed items scheduled for today or later, selects the earliest matching appointment, and displays doctor, reason, formatted date and day label, time, a status badge ("Today" or "Upcoming"), and a count of additional upcoming appointments when applicable. If no matching appointment exists, renders the NoNextAppointments component.
+ *
+ * @returns The JSX element for the Next Appointment card or the NoNextAppointments component when there are no upcoming confirmed appointments.
+ */
 async function NextAppointment() {
   const appointments = await getUserAppointments();
 

@@ -6,6 +6,15 @@ import { MessageSquareIcon, CalendarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * Render two primary dashboard action cards for quick access to voice assistance and appointment booking.
+ *
+ * Renders a responsive two-column grid containing:
+ * - an "AI Voice Assistant" card with icon, descriptive text, feature list, and a link to start a voice call; and
+ * - a "Book Appointment" card with icon, descriptive text, feature list, and a link to schedule an appointment.
+ *
+ * @returns A React element containing the responsive grid of the two action cards.
+ */
 export default function MainActions() {
   return (
     <div className="grid md:grid-cols-2 gap-8 mb-12">
