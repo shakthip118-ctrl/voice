@@ -1,5 +1,3 @@
-// <- Important! must be first line
-import { SignUpButton, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import HowItWorks from "@/components/landing/HowItWorks";
@@ -11,15 +9,36 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-
   const user = await currentUser();
 
-  if(user) redirect("/dashboard");
+  if (user) redirect("/dashboard");
+
   return (
     <div className="min-h-screen bg-background">
-<br />
-<br />
-<br />
+      
+      {/* 🔥 CLIENT-SIDE ERROR SUPPRESSOR */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const originalError = console.error;
+              console.error = function(...args) {
+                if (
+                  typeof args[0] === "string" &&
+                  args[0].includes("daily-js version 0.80.0 is no longer supported")
+                ) {
+                  return;
+                }
+                originalError.apply(console, args);
+              };
+            })();
+          `,
+        }}
+      />
+
+      <br />
+      <br />
+      <br />
 
       <Header />
       <Hero />
@@ -27,10 +46,7 @@ export default async function Home() {
       <WhatToAsk />
       <PricingSection />
       <CTA />
-      <Footer />  
-      
-
-
+      <Footer />
     </div>
   );
 }
