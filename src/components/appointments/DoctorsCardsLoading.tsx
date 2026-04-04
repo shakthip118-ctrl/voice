@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 
 function DoctorCardSkeleton() {
   return (
@@ -17,24 +18,28 @@ function DoctorCardSkeleton() {
           </div>
         </div>
       </CardHeader>
+
       <CardContent className="space-y-3">
         <div className="flex items-center gap-2">
           <Skeleton className="w-4 h-4" />
           <Skeleton className="h-4 w-24" />
         </div>
+
         <div className="flex items-center gap-2">
           <Skeleton className="w-4 h-4" />
           <Skeleton className="h-4 w-32" />
         </div>
+
         <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-6 w-20" />
+
+        {/* Button skeleton */}
+        <Skeleton className="h-10 w-full rounded-md" />
       </CardContent>
     </Card>
   );
 }
 
 export function DoctorCardsLoading() {
-  // this will show 6 skeleton cards
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Array.from({ length: 6 }).map((_, i) => (

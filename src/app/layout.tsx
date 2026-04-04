@@ -30,17 +30,22 @@ export default function RootLayout({
   return (
    <TanStackProvider>
       <ClerkProvider
-     appearance={{
-          variables: {
-            colorPrimary: "#e78a53",
-            colorBackground: "#565657",
-            colorText: "#111827",
-            colorTextSecondary: "#cad1df",
-            colorInputBackground: "#6e6f72",
-          },
-        }}
-      
-      >
+      appearance={{
+        variables: {
+          colorPrimary: "#d87943",   // 🟠 Orange buttons
+          colorBackground: "#f3f4f6", // 🟫 Grey background (matches cards)
+          colorText: "#111827",       // Dark text
+          borderRadius: "0.75rem",    // Rounded corners
+        },
+        elements: {
+          card: "bg-card shadow-lg border border-border rounded-xl",
+          input:
+            "bg-card border border-border text-card-foreground rounded-md px-3 py-2 placeholder-gray-400",
+          formButtonPrimary:
+            "bg-primary text-primary-foreground hover:opacity-90 font-medium rounded-lg px-4 py-2",
+        },
+      }}
+    >
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
             <UserSync />
