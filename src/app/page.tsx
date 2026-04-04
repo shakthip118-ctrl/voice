@@ -8,6 +8,7 @@ import Footer from "@/components/landing/Footer";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
+
 export default async function Home() {
   const user = await currentUser();
 
@@ -16,7 +17,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-background">
       
-      {/* 🔥 CLIENT-SIDE ERROR SUPPRESSOR */}
+      {/* CLIENT-SIDE ERROR SUPPRESSOR */}
       <script
         dangerouslySetInnerHTML={{
           __html: `
