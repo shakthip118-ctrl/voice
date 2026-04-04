@@ -12,7 +12,7 @@ function Header() {
           <span className="font-semibold text-lg">DentWise</span>
         </Link>
 
-        
+       
 
         <div className="flex items-center gap-3">
           <SignInButton mode="modal">
@@ -23,6 +23,17 @@ function Header() {
           <SignUpButton mode="modal">
             <Button size={"sm"}>Sign Up</Button>
           </SignUpButton>
+
+          
+          
+<SignInButton
+        mode="modal"
+        forceRedirectUrl="/admin" // redirect after login
+      >
+        <button className="text-sm text-muted-foreground underline hover:text-primary">
+          Admin Login
+        </button>
+      </SignInButton>
         </div>
       </div>
     </nav>
