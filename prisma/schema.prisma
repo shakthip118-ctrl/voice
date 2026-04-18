@@ -5,7 +5,6 @@
 
 generator client {
   provider = "prisma-client-js"
- 
 }
 
 datasource db {
@@ -15,9 +14,9 @@ datasource db {
 
 //use,doctor
 model User {
-  id        String @id @default(cuid())
-  clerkId   String @unique
-  email     String @unique
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
   firstName String?
   lastName  String?
   phone     String?
@@ -31,47 +30,64 @@ model User {
 }
 
 model Doctor {
-  id          String   @id @default(cuid())
-  name        String
-  email       String   @unique
-  phone       String
-  speciality  String
-  bio         String?
-  imageUrl    String?
-  gender      Gender
-  isActive    Boolean @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  phone      String
+  speciality String
+  bio        String?
+  imageUrl   String?
+  gender     Gender
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  // relationships
   appointments Appointment[]
 
-  @@map("doctors")
+  // ✅ ADD THIS
+  availabilities Availability[]
 
+  @@map("doctors")
 }
 
 model Appointment {
-  id          String            @id @default(cuid())
-  date        DateTime
-  time        String // store time as string i.e. 14:30
-  duration    Int               @default(30) // duration in minutes
-  status      AppointmentStatus @default(CONFIRMED)
-  notes       String?
-  reason      String? // reason for appointment - teeth cleaning? emergency visit? etc.
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id        String            @id @default(cuid())
+  date      DateTime
+  time      String? // nullable for emergency
+  duration  Int               @default(30)
+  status    AppointmentStatus @default(PENDING)
+  type      AppointmentType   @default(NORMAL)
+  isDeleted Boolean           @default(false)
 
-  // foreign keys
-  userId String
+  notes  String?
+  reason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId   String
   doctorId String
 
-  // relationships
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
   @@map("appointments")
 }
 
+model Availability {
+  id           String   @id @default(cuid())
+  doctorId     String
+  date         DateTime
+  startTime    String
+  endTime      String
+  slotDuration Int      @default(30)
+
+  doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("availability")
+}
 
 enum Gender {
   MALE
@@ -79,6 +95,13 @@ enum Gender {
 }
 
 enum AppointmentStatus {
- CONFIRMED
- COMPLETED
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+enum AppointmentType {
+  NORMAL
+  EMERGENCY
 }
