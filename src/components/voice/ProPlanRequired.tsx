@@ -23,7 +23,7 @@ function ProPlanRequired() {
                 <div>
                   <h1 className="text-4xl font-bold mb-2">Voice Assistant Access Required</h1>
                   <p className="text-muted-foreground">
-                    Upgrade to AI Pro or AI Basic to unlock unlimited voice consultations with our
+                    Upgrade to AI Basic or AI Pro to unlock unlimited voice consultations with our
                     AI dental assistant.
                   </p>
                 </div>

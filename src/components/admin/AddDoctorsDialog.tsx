@@ -16,7 +16,7 @@ import { Button } from "../ui/button";
 import { isValidPhoneNumber } from "react-phone-number-input";
 
 import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+
 
 interface AddDoctorDialogProps {
   isOpen: boolean;

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { MapPinIcon, PhoneIcon, StarIcon } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { DoctorCardsLoading } from "./DoctorsCardsLoading"
+import { DoctorCardsLoading } from "./DoctorsCardsLoading";
 
 interface DoctorSelectionStepProps {
   selectedDentistId: string | null;
@@ -43,7 +43,7 @@ function DoctorSelectionStep({
             <CardHeader className="pb-4">
               <div className="flex items-start gap-4">
                 <Image
-                  src={dentist.imageUrl!}
+                  src={"/profile.png"}
                   alt={dentist.name}
                   width={64}
                   height={64}
@@ -80,17 +80,25 @@ function DoctorSelectionStep({
                 {dentist.bio || "Experienced dental professional providing quality care."}
               </p>
               <Badge variant="secondary">Licensed Professional</Badge>
+           <br></br>   <Button className="mt-3" onClick={() => onSelectDentist(dentist.id)}>
+    Select doctor
+  </Button>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      {selectedDentistId && (
-        <div className="flex justify-end">
-          <Button onClick={onContinue}>Continue to Time Selection</Button>
-        </div>
-      )}
+      {/* Continue button always visible */}
+      <div className="flex justify-end">
+        <Button 
+          onClick={onContinue} 
+          disabled={!selectedDentistId} // disabled until a dentist is selected
+        >
+          Continue to Time Selection
+        </Button>
+      </div>
     </div>
   );
 }
+
 export default DoctorSelectionStep;

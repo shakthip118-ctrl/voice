@@ -26,14 +26,7 @@ function Header() {
 
           
           
-<SignInButton
-        mode="modal"
-        forceRedirectUrl="/admin" // redirect after login
-      >
-        <button className="text-sm text-muted-foreground underline hover:text-primary">
-          Admin Login
-        </button>
-      </SignInButton>
+
         </div>
       </div>
     </nav>

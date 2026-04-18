@@ -10,7 +10,7 @@ function DoctorInfo({ doctorId }: { doctorId: string }) {
   return (
     <div className="flex items-center gap-4">
       <Image
-        src={doctor.imageUrl!}
+        src={"/profile.png"}
         alt={doctor.name}
         width={48}
         height={48}

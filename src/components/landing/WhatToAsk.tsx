@@ -1,5 +1,6 @@
+"use client";
+
 import { MessageCircleIcon, MessageSquareIcon } from "lucide-react";
-import Image from "next/image";
 
 function WhatToAsk() {
   return (
@@ -133,11 +134,10 @@ function WhatToAsk() {
           {/* Right Side - AI Illustration */}
           <div className="bg-gradient-to-br from-card/90 to-card/60 backdrop-blur-xl rounded-3xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-500">
             <div className="flex items-center justify-center h-full">
-              <Image
+              <img
                 src="/confused.png"
                 alt="AI Assistant"
-                width={500}
-                height={500}
+                loading="lazy"
                 className="w-full h-auto max-w-lg object-contain"
               />
             </div>
