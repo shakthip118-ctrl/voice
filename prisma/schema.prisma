@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//use,doctor
 model User {
   id        String   @id @default(cuid())
   clerkId   String   @unique
@@ -20,10 +14,9 @@ model User {
   firstName String?
   lastName  String?
   phone     String?
-  createdAt DateTime @default(now()) // member since mar 2026
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // relationships
   appointments Appointment[]
 
   @@map("users")
@@ -42,19 +35,18 @@ model Doctor {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  appointments Appointment[]
-
-  // ✅ ADD THIS
-  availabilities Availability[]
+  appointments   Appointment[]
+  availabilities Availability[] // ✅ IMPORTANT
 
   @@map("doctors")
 }
 
 model Appointment {
-  id        String            @id @default(cuid())
-  date      DateTime
-  time      String? // nullable for emergency
-  duration  Int               @default(30)
+  id       String   @id @default(cuid())
+  date     DateTime
+  time     String? // ✅ nullable for emergency
+  duration Int      @default(30)
+
   status    AppointmentStatus @default(PENDING)
   type      AppointmentType   @default(NORMAL)
   isDeleted Boolean           @default(false)
@@ -87,6 +79,15 @@ model Availability {
   createdAt DateTime @default(now())
 
   @@map("availability")
+}
+
+/// ✅ KEEP YOUR OLD TABLE SAFE
+model playing_with_neon {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value Float? @db.Real
+
+  @@ignore // 🔥 IMPORTANT (prevents deletion)
 }
 
 enum Gender {

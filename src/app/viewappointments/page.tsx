@@ -1,8 +1,8 @@
+import ViewAppointmentsClient from "./ViewAppointmentsClient";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import AdminDashboardClient from "./AdminDashboardClient";
 
-async function AdminPage() {
+export default async function Page() {
   const user = await currentUser();
 
   if (!user) redirect("/");
@@ -10,11 +10,9 @@ async function AdminPage() {
   const adminEmail = process.env.ADMIN_EMAIL;
   const userEmail = user.primaryEmailAddress?.emailAddress;
 
-  if (!adminEmail || userEmail?.toLowerCase() !== adminEmail.toLowerCase()) {
-    redirect("/dashboard");
+  if (adminEmail && userEmail?.toLowerCase() === adminEmail.toLowerCase()) {
+    redirect("/admin");
   }
 
-  return <AdminDashboardClient />;
+  return <ViewAppointmentsClient />;
 }
-
-export default AdminPage;

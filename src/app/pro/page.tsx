@@ -9,6 +9,13 @@ async function ProPage() {
 
   if (!user) redirect("/");
 
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const userEmail = user.primaryEmailAddress?.emailAddress;
+
+  if (adminEmail && userEmail?.toLowerCase() === adminEmail.toLowerCase()) {
+    redirect("/admin");
+  }
+
   return (
     <>
       <Navbar />

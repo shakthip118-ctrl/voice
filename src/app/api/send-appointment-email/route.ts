@@ -1,3 +1,4 @@
+
 import AppointmentConfirmationEmail from "@/components/emails/AppointmentConfirmationEmail";
 import resend from "@/lib/resend";
 import { NextResponse } from "next/server";

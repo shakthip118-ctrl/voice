@@ -3,7 +3,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "../prisma";
 import { AppointmentStatus } from "@prisma/client";
-import { syncUser } from "./users";
 
 function transformAppointment(appointment: any) {
   return {
@@ -41,8 +40,12 @@ export async function getAppointments() {
 
 export async function getUserAppointments() {
   try {
-    // ensure the authenticated Clerk user has a matching DB record
-    const user = await syncUser();
+    // get authenticated user from Clerk
+    const { userId } = await auth();
+    if (!userId) throw new Error("You must be logged in to view appointments");
+
+    // find user by clerkId from authenticated session
+    const user = await prisma.user.findUnique({ where: { clerkId: userId } });
     if (!user) throw new Error("User not found. Please ensure your account is properly set up.");
 
     const appointments = await prisma.appointment.findMany({
@@ -63,7 +66,11 @@ export async function getUserAppointments() {
 
 export async function getUserAppointmentStats() {
   try {
-    const user = await syncUser();
+    const { userId } = await auth();
+    if (!userId) throw new Error("You must be authenticated");
+
+    const user = await prisma.user.findUnique({ where: { clerkId: userId } });
+
     if (!user) throw new Error("User not found");
 
     // these calls will run in parallel, instead of waiting each other
@@ -118,11 +125,14 @@ interface BookAppointmentInput {
 
 export async function bookAppointment(input: BookAppointmentInput) {
   try {
+    const { userId } = await auth();
+    if (!userId) throw new Error("You must be logged in to book an appointment");
+
     if (!input.doctorId || !input.date || !input.time) {
       throw new Error("Doctor, date, and time are required");
     }
 
-    const user = await syncUser();
+    const user = await prisma.user.findUnique({ where: { clerkId: userId } });
     if (!user) throw new Error("User not found. Please ensure your account is properly set up.");
 
     const appointment = await prisma.appointment.create({

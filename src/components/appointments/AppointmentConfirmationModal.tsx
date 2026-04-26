@@ -91,25 +91,29 @@ export function AppointmentConfirmationModal({
             </div>
           )}
 
-          {/* Action Buttons */}
-          <div className="flex flex-col gap-3">
-            <Link href="/appointments" className="w-full">
-              <Button className="w-full" onClick={() => onOpenChange(false)}>
-                View My Appointments
-              </Button>
-            </Link>
+        {/* Action Buttons */}
+<div className="flex flex-col gap-3">
+  <Link href="/viewappointments" className="w-full">
+    <Button className="w-full" onClick={() => onOpenChange(false)}>
+      View My Appointments
+    </Button>
+  </Link>
 
-            <Button variant="outline" className="w-full" onClick={() => onOpenChange(false)}>
-              Close
-            </Button>
-          </div>
+  <Button
+    variant="outline"
+    className="w-full"
+    onClick={() => onOpenChange(false)}
+  >
+    Close
+  </Button>
+</div>
 
           {/* Additional Info */}
           <div className="text-center text-xs text-muted-foreground border-t pt-4">
             <p>
               Please arrive 15 minutes early for your appointment.
               <br />
-              Need to reschedule? Contact us 24 hours in advance.
+           
             </p>
           </div>
         </div>
