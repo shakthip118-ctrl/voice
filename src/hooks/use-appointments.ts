@@ -1,5 +1,6 @@
 "use client";
 
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   bookAppointment,
   getAppointments,
@@ -7,7 +8,6 @@ import {
   getUserAppointments,
   updateAppointmentStatus,
 } from "@/lib/actions/appointments";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useGetAppointments() {
   const result = useQuery({

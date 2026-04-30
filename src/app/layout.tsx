@@ -33,8 +33,8 @@ export default function RootLayout({
       appearance={{
         variables: {
           colorPrimary: "#d87943",   // 🟠 Orange buttons
-          colorBackground: "#f3f4f6", // 🟫 Grey background (matches cards)
-          colorText: "#111827",       // Dark text
+          colorBackground: "#dee5f1", 
+          colorText: "#e6e9ed",       // Dark text
           borderRadius: "0.75rem",    // Rounded corners
         },
         elements: {

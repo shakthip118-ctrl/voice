@@ -1,7 +1,12 @@
 "use client";
 
-import { createDoctor, getAvailableDoctors, getDoctors, updateDoctor } from "@/lib/actions/doctors";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  createDoctor,
+  getAvailableDoctors,
+  getDoctors,
+  updateDoctor,
+} from "@/lib/actions/doctors";
 
 export function useGetDoctors() {
   const result = useQuery({
@@ -21,7 +26,7 @@ export function useCreateDoctor() {
       // invalidate related queries to refresh the data
       queryClient.invalidateQueries({ queryKey: ["getDoctors"] });
     },
-    onError: (error) => console.log("Error while  creating a doctor"),
+    onError: (_error) => console.log("Error while  creating a doctor"),
   });
 
   return result;

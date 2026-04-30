@@ -1,7 +1,9 @@
-import { useBookedTimeSlots } from "@/hooks/use-appointments";
-import { APPOINTMENT_TYPES, getAvailableTimeSlots, getNext5Days } from "@/lib/utils";
-import { Button } from "../ui/button";
+"use client";
+
 import { ChevronLeftIcon, ClockIcon } from "lucide-react";
+import { useBookedTimeSlots } from "@/hooks/use-appointments";
+import { APPOINTMENT_TYPES, getNext5Days } from "@/lib/utils";
+import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 
 interface TimeSelectionStepProps {
@@ -27,20 +29,34 @@ function TimeSelectionStep({
   selectedTime,
   selectedType,
 }: TimeSelectionStepProps) {
-  const { data: bookedTimeSlots = [] } = useBookedTimeSlots(selectedDentistId, selectedDate);
+  const { data: bookedTimeSlots = [] } = useBookedTimeSlots(
+    selectedDentistId,
+    selectedDate,
+  );
 
   const availableDates = getNext5Days();
-  const availableTimeSlots = getAvailableTimeSlots();
+
+  // ✅ NEW: 1-hour interval (9 AM → 5 PM)
+  const availableTimeSlots = [
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+  ];
 
   const handleDateSelect = (date: string) => {
     onDateChange(date);
-    // reset time when the date changes
-    onTimeChange("");
+    onTimeChange(""); // reset time
   };
 
   return (
     <div className="space-y-6">
-      {/* header with back button */}
+      {/* header */}
       <div className="flex items-center gap-4 mb-6">
         <Button variant="ghost" onClick={onBack}>
           <ChevronLeftIcon className="w-4 h-4 mr-2" />
@@ -51,9 +67,10 @@ function TimeSelectionStep({
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        {/* appointment type selection */}
+        {/* LEFT: appointment type */}
         <div className="space-y-4">
           <h3 className="text-lg font-medium">Appointment Type</h3>
+
           <div className="space-y-3">
             {APPOINTMENT_TYPES.map((type) => (
               <Card
@@ -67,9 +84,13 @@ function TimeSelectionStep({
                   <div className="flex justify-between items-center">
                     <div>
                       <h4 className="font-medium">{type.name}</h4>
-                      <p className="text-sm text-muted-foreground">{type.duration}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {type.duration}
+                      </p>
                     </div>
-                    <span className="font-semibold text-primary">{type.price}</span>
+                    <span className="font-semibold text-primary">
+                      {type.price}
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -77,11 +98,11 @@ function TimeSelectionStep({
           </div>
         </div>
 
-        {/* date & time selection */}
+        {/* RIGHT: date + time */}
         <div className="space-y-4">
           <h3 className="text-lg font-medium">Available Dates</h3>
 
-          {/* date Selection */}
+          {/* dates */}
           <div className="grid grid-cols-2 gap-3">
             {availableDates.map((date) => (
               <Button
@@ -103,13 +124,15 @@ function TimeSelectionStep({
             ))}
           </div>
 
-          {/* time Selection (only show when date is selected) */}
+          {/* time slots */}
           {selectedDate && (
             <div className="space-y-3">
               <h4 className="font-medium">Available Times</h4>
+
               <div className="grid grid-cols-3 gap-2">
                 {availableTimeSlots.map((time) => {
                   const isBooked = bookedTimeSlots.includes(time);
+
                   return (
                     <Button
                       key={time}
@@ -117,7 +140,9 @@ function TimeSelectionStep({
                       onClick={() => !isBooked && onTimeChange(time)}
                       size="sm"
                       disabled={isBooked}
-                      className={isBooked ? "opacity-50 cursor-not-allowed" : ""}
+                      className={
+                        isBooked ? "opacity-50 cursor-not-allowed" : ""
+                      }
                     >
                       <ClockIcon className="w-3 h-3 mr-1" />
                       {time}
@@ -131,7 +156,7 @@ function TimeSelectionStep({
         </div>
       </div>
 
-      {/* continue button (only show when all selections are made) */}
+      {/* continue */}
       {selectedType && selectedDate && selectedTime && (
         <div className="flex justify-end">
           <Button onClick={onContinue}>Review Booking</Button>

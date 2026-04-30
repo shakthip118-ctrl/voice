@@ -1,11 +1,11 @@
 "use client";
 
-import { vapi } from "@/lib/vapi";
 import { useUser } from "@clerk/nextjs";
-import { useEffect, useRef, useState } from "react";
-import { Card } from "../ui/card";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { vapi } from "@/lib/vapi";
 import { Button } from "../ui/button";
+import { Card } from "../ui/card";
 
 function VapiWidget() {
   const [callActive, setCallActive] = useState(false);
@@ -20,9 +20,10 @@ function VapiWidget() {
   // auto-scroll for messages
   useEffect(() => {
     if (messageContainerRef.current) {
-      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, []);
 
   // setup event listeners for VAPI
   useEffect(() => {
@@ -111,7 +112,8 @@ function VapiWidget() {
           <span className="text-primary uppercase">AI Dental Assistant</span>
         </h1>
         <p className="text-muted-foreground mt-2">
-          Have a voice conversation with our AI assistant for dental advice and guidance
+          Have a voice conversation with our AI assistant for dental advice and
+          guidance
         </p>
       </div>
 
@@ -158,7 +160,9 @@ function VapiWidget() {
             </div>
 
             <h2 className="text-xl font-bold text-foreground">DentWise AI</h2>
-            <p className="text-sm text-muted-foreground mt-1">Dental Assistant</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Dental Assistant
+            </p>
 
             {/* SPEAKING INDICATOR */}
             <div
@@ -166,15 +170,17 @@ function VapiWidget() {
                 isSpeaking ? "border-primary" : ""
               }`}
             >
-              <div className={`w-2 h-2 rounded-full ${isSpeaking ? "bg-primary animate-pulse" : "bg-muted"}`} />
+              <div
+                className={`w-2 h-2 rounded-full ${isSpeaking ? "bg-primary animate-pulse" : "bg-muted"}`}
+              />
               <span className="text-xs text-muted-foreground">
                 {isSpeaking
                   ? "Speaking..."
                   : callActive
-                  ? "Listening..."
-                  : callEnded
-                  ? "Call ended"
-                  : "Waiting..."}
+                    ? "Listening..."
+                    : callEnded
+                      ? "Call ended"
+                      : "Waiting..."}
               </span>
             </div>
           </div>
@@ -194,7 +200,9 @@ function VapiWidget() {
             </div>
             <h2 className="text-xl font-bold text-foreground">You</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              {user ? (user.firstName + " " + (user.lastName || "")).trim() : "Guest"}
+              {user
+                ? `${user.firstName} ${user.lastName || ""}`.trim()
+                : "Guest"}
             </p>
             <div className="mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-card border">
               <div className="w-2 h-2 rounded-full bg-muted" />
@@ -212,7 +220,10 @@ function VapiWidget() {
         >
           <div className="space-y-3">
             {messages.map((msg, index) => (
-              <div key={index} className="message-item animate-in fade-in duration-300">
+              <div
+                key={index}
+                className="message-item animate-in fade-in duration-300"
+              >
                 <div className="font-semibold text-xs text-muted-foreground mb-1">
                   {msg.role === "assistant" ? "DentWise AI" : "You"}:
                 </div>
@@ -222,8 +233,12 @@ function VapiWidget() {
 
             {callEnded && (
               <div className="message-item animate-in fade-in duration-300">
-                <div className="font-semibold text-xs text-primary mb-1">System:</div>
-                <p className="text-foreground">Call ended. Thank you for using DentWise AI!</p>
+                <div className="font-semibold text-xs text-primary mb-1">
+                  System:
+                </div>
+                <p className="text-foreground">
+                  Call ended. Thank you for using DentWise AI!
+                </p>
               </div>
             )}
           </div>
@@ -248,10 +263,10 @@ function VapiWidget() {
             {callActive
               ? "End Call"
               : connecting
-              ? "Connecting..."
-              : callEnded
-              ? "Call Again"
-              : "Start Call"}
+                ? "Connecting..."
+                : callEnded
+                  ? "Call Again"
+                  : "Start Call"}
           </span>
         </Button>
       </div>

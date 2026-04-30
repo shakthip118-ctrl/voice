@@ -14,14 +14,18 @@ function ProgressSteps({ currentStep }: { currentStep: number }) {
             {/* step circle */}
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                isActive ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                isActive
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground"
               }`}
             >
               {stepNumber}
             </div>
 
             {/* step name */}
-            <span className={`text-sm ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
+            <span
+              className={`text-sm ${isActive ? "text-foreground" : "text-muted-foreground"}`}
+            >
               {stepName}
             </span>
 

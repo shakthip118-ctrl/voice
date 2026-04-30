@@ -1,13 +1,20 @@
-import Navbar from "@/components/Navbar";
 import { PricingTable } from "@clerk/nextjs";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { CrownIcon } from "lucide-react";
 import { redirect } from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 async function ProPage() {
   const user = await currentUser();
 
   if (!user) redirect("/");
+
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const userEmail = user.primaryEmailAddress?.emailAddress;
+
+  if (adminEmail && userEmail?.toLowerCase() === adminEmail.toLowerCase()) {
+    redirect("/admin");
+  }
 
   return (
     <>
@@ -19,14 +26,18 @@ async function ProPage() {
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primar/10 rounded-full border border-primary/20 ">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-primary">Upgrade to Pro</span>
+                <span className="text-sm font-medium text-primary">
+                  Upgrade to Pro
+                </span>
               </div>
 
               <div>
-                <h1 className="text-4xl font-bold mb-2">Unlock Premium AI Dental Care</h1>
+                <h1 className="text-4xl font-bold mb-2">
+                  Unlock Premium AI Dental Care
+                </h1>
                 <p className="text-muted-foreground">
-                  Get unlimited AI consultations, advanced features, and priority support to take
-                  your dental health to the next level.
+                  Get unlimited AI consultations, advanced features, and
+                  priority support to take your dental health to the next level.
                 </p>
               </div>
             </div>
@@ -44,13 +55,12 @@ async function ProPage() {
           <div className="text-center space-y-4">
             <h2 className="text-3xl font-bold">Choose Your Plan</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Select the perfect plan for your dental care needs. All plans include secure access
-              and bank-level encryption.
+              Select the perfect plan for your dental care needs. All plans
+              include secure access and bank-level encryption.
             </p>
           </div>
 
-          <PricingTable  
-           />
+          <PricingTable />
         </div>
       </div>
     </>

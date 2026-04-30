@@ -1,10 +1,10 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { MessageSquareIcon, CalendarIcon } from "lucide-react";
+import { CalendarIcon, MessageSquareIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function MainActions() {
   return (
@@ -15,11 +15,19 @@ export default function MainActions() {
         <CardContent className="relative p-8">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Image src="/audio.png" alt="Voice AI" width={32} height={32} className="w-10" />
+              <Image
+                src="/audio.png"
+                alt="Voice AI"
+                width={32}
+                height={32}
+                className="w-10"
+              />
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-2">AI Voice Assistant</h3>
-              <p className="text-muted-foreground">Get instant dental advice through voice calls</p>
+              <p className="text-muted-foreground">
+                Get instant dental advice through voice calls
+              </p>
             </div>
           </div>
 
@@ -56,11 +64,19 @@ export default function MainActions() {
         <CardContent className="relative p-8">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Image src="/calendar.png" alt="Calendar" width={32} height={32} className="w-10" />
+              <Image
+                src="/calendar.png"
+                alt="Calendar"
+                width={32}
+                height={32}
+                className="w-10"
+              />
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-2">Book Appointment</h3>
-              <p className="text-muted-foreground">Schedule with verified dentists in your area</p>
+              <p className="text-muted-foreground">
+                Schedule with verified dentists in your area
+              </p>
             </div>
           </div>
 
