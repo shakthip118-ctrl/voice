@@ -1,22 +1,41 @@
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import CTA from "@/components/landing/CTA";
+import Footer from "@/components/landing/Footer";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import HowItWorks from "@/components/landing/HowItWorks";
-import WhatToAsk from "@/components/landing/WhatToAsk";
 import PricingSection from "@/components/landing/PricingSection";
-import CTA from "@/components/landing/CTA";
-import Footer from "@/components/landing/Footer";
-import { currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-
+import WhatToAsk from "@/components/landing/WhatToAsk";
 
 export default async function Home() {
   const user = await currentUser();
 
-  if (user) redirect("/dashboard");
+  // ✅ DEBUG LOGS (check in terminal)
+  console.log("ADMIN:", process.env.ADMIN_EMAIL);
+  console.log("USER:", user?.primaryEmailAddress?.emailAddress);
+
+  if (user) {
+    const adminEmail = process.env.ADMIN_EMAIL;
+
+    const userEmail =
+      user.primaryEmailAddress?.emailAddress ||
+      user.emailAddresses[0]?.emailAddress;
+
+    // ✅ Safe comparison
+    if (
+      adminEmail &&
+      userEmail &&
+      userEmail.toLowerCase().trim() === adminEmail.toLowerCase().trim()
+    ) {
+      redirect("/admin");
+    }
+
+    redirect("/dashboard");
+  }
 
   return (
     <div className="min-h-screen bg-background">
-      
       {/* CLIENT-SIDE ERROR SUPPRESSOR */}
       <script
         dangerouslySetInnerHTML={{
@@ -44,8 +63,10 @@ export default async function Home() {
       <Header />
       <Hero />
       <HowItWorks />
-      <WhatToAsk />  <PricingSection />
-      <CTA /><Footer />
+      <WhatToAsk />
+      <PricingSection />
+      <CTA />
+      <Footer />
     </div>
   );
 }

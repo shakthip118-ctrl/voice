@@ -1,5 +1,5 @@
-import { useAvailableDoctors } from "@/hooks/use-doctors";
 import Image from "next/image";
+import { useAvailableDoctors } from "@/hooks/use-doctors";
 
 function DoctorInfo({ doctorId }: { doctorId: string }) {
   const { data: doctors = [] } = useAvailableDoctors();
@@ -11,14 +11,16 @@ function DoctorInfo({ doctorId }: { doctorId: string }) {
     <div className="flex items-center gap-4">
       <Image
         src={doctor.imageUrl || "/profile.png"}
-                alt={doctor.name}
+        alt={doctor.name}
         width={48}
         height={48}
         className="w-12 h-12 rounded-full object-cover"
       />
       <div>
         <h3 className="font-medium">{doctor.name}</h3>
-        <p className="text-sm text-muted-foreground">{doctor.speciality || "General Dentistry"}</p>
+        <p className="text-sm text-muted-foreground">
+          {doctor.speciality || "General Dentistry"}
+        </p>
       </div>
     </div>
   );

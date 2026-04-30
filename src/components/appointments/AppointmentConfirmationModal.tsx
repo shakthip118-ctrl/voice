@@ -1,14 +1,20 @@
 import {
+  CalendarIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  MailIcon,
+  UserIcon,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { CheckCircleIcon, MailIcon, CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
 interface AppointmentConfirmationModalProps {
   open: boolean;
@@ -62,7 +68,9 @@ export function AppointmentConfirmationModal({
                 Details sent to your inbox
               </div>
               {appointmentDetails?.userEmail && (
-                <p className="text-xs text-muted-foreground">{appointmentDetails.userEmail}</p>
+                <p className="text-xs text-muted-foreground">
+                  {appointmentDetails.userEmail}
+                </p>
               )}
             </div>
           </div>
@@ -70,12 +78,16 @@ export function AppointmentConfirmationModal({
           {/* Appointment Summary */}
           {appointmentDetails && (
             <div className="bg-muted/30 rounded-lg p-4 space-y-3">
-              <h4 className="font-medium text-sm text-center mb-3">Quick Summary</h4>
+              <h4 className="font-medium text-sm text-center mb-3">
+                Quick Summary
+              </h4>
 
               <div className="space-y-2">
                 <div className="flex items-center gap-3 text-sm">
                   <UserIcon className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">{appointmentDetails.doctorName}</span>
+                  <span className="font-medium">
+                    {appointmentDetails.doctorName}
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-3 text-sm">
@@ -93,13 +105,17 @@ export function AppointmentConfirmationModal({
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3">
-            <Link href="/appointments" className="w-full">
+            <Link href="/viewappointments" className="w-full">
               <Button className="w-full" onClick={() => onOpenChange(false)}>
                 View My Appointments
               </Button>
             </Link>
 
-            <Button variant="outline" className="w-full" onClick={() => onOpenChange(false)}>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => onOpenChange(false)}
+            >
               Close
             </Button>
           </div>
@@ -109,7 +125,6 @@ export function AppointmentConfirmationModal({
             <p>
               Please arrive 15 minutes early for your appointment.
               <br />
-              Need to reschedule? Contact us 24 hours in advance.
             </p>
           </div>
         </div>

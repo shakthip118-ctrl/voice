@@ -1,4 +1,4 @@
-import { clsx, type ClassValue } from "clsx";
+import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -33,10 +33,15 @@ export const getNext5Days = () => {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  for (let i = 0; i < 5; i++) {
+  let i = 0;
+  while (dates.length < 5) {
     const date = new Date(tomorrow);
     date.setDate(date.getDate() + i);
-    dates.push(date.toISOString().split("T")[0]);
+    // Skip Sundays (0 = Sunday)
+    if (date.getDay() !== 0) {
+      dates.push(date.toISOString().split("T")[0]);
+    }
+    i++;
   }
 
   return dates;
@@ -62,6 +67,16 @@ export const getAvailableTimeSlots = () => {
 export const APPOINTMENT_TYPES = [
   { id: "checkup", name: "Regular Checkup", duration: "60 min", price: "$120" },
   { id: "cleaning", name: "Teeth Cleaning", duration: "45 min", price: "$90" },
-  { id: "consultation", name: "Consultation", duration: "30 min", price: "$75" },
-  { id: "emergency", name: "Emergency Visit", duration: "30 min", price: "$150" },
+  {
+    id: "consultation",
+    name: "Consultation",
+    duration: "30 min",
+    price: "$75",
+  },
+  {
+    id: "emergency",
+    name: "Emergency Visit",
+    duration: "30 min",
+    price: "$150",
+  },
 ];

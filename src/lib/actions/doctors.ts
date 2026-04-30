@@ -1,9 +1,9 @@
 "use server";
 
-import { Gender } from "@prisma/client";
+import type { Gender } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { prisma } from "../prisma";
 import { generateAvatar } from "../utils";
-import { revalidatePath } from "next/cache";
 
 // ---------------------------
 // Fetch all doctors
@@ -44,7 +44,8 @@ interface CreateDoctorInput {
 // ---------------------------
 export async function createDoctor(input: CreateDoctorInput) {
   try {
-    if (!input.name || !input.email) throw new Error("Name and email are required");
+    if (!input.name || !input.email)
+      throw new Error("Name and email are required");
 
     const doctor = await prisma.doctor.create({
       data: {
@@ -91,8 +92,11 @@ export async function updateDoctor(input: UpdateDoctorInput) {
 
     // Check email uniqueness if changing
     if (email && email !== currentDoctor.email) {
-      const existingDoctor = await prisma.doctor.findUnique({ where: { email } });
-      if (existingDoctor) throw new Error("A doctor with this email already exists");
+      const existingDoctor = await prisma.doctor.findUnique({
+        where: { email },
+      });
+      if (existingDoctor)
+        throw new Error("A doctor with this email already exists");
     }
 
     // Prepare update data safely
@@ -107,7 +111,10 @@ export async function updateDoctor(input: UpdateDoctorInput) {
 
     // Regenerate avatar if name or gender changes
     if (name || gender) {
-      updateData.imageUrl = generateAvatar(name || currentDoctor.name, gender || currentDoctor.gender);
+      updateData.imageUrl = generateAvatar(
+        name || currentDoctor.name,
+        gender || currentDoctor.gender,
+      );
     }
 
     const doctor = await prisma.doctor.update({

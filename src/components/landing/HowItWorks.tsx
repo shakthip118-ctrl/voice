@@ -10,7 +10,9 @@ function HowItWorks() {
       <div className="text-center mb-20">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/5 to-primary/10 rounded-full border border-primary/10 backdrop-blur-sm mb-6">
           <ZapIcon className="size-4 text-primary" />
-          <span className="text-sm font-medium text-primary">Simple Process</span>
+          <span className="text-sm font-medium text-primary">
+            Simple Process
+          </span>
         </div>
 
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
@@ -24,8 +26,8 @@ function HowItWorks() {
         </h2>
 
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Our streamlined process makes dental care accessible, convenient, and stress-free for
-          everyone
+          Our streamlined process makes dental care accessible, convenient, and
+          stress-free for everyone
         </p>
       </div>
 
@@ -45,13 +47,22 @@ function HowItWorks() {
 
               {/* Icon */}
               <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 mb-6">
-                <Image src="/audio.png" alt="Voice Chat" width={40} height={40} className="w-14" />
+                <Image
+                  src="/audio.png"
+                  alt="Voice Chat"
+                  width={40}
+                  height={40}
+                  className="w-14"
+                />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-center">Ask Questions</h3>
+              <h3 className="text-2xl font-bold mb-4 text-center">
+                Ask Questions
+              </h3>
               <p className="text-muted-foreground text-center leading-relaxed mb-6">
-                Chat with our AI assistant about any dental concerns. Get instant answers about
-                symptoms, treatments, and oral health tips.
+                Chat with our AI assistant about any dental concerns. Get
+                instant answers about symptoms, treatments, and oral health
+                tips.
               </p>
 
               {/* Feature Pills */}
@@ -76,13 +87,21 @@ function HowItWorks() {
 
               {/* Icon */}
               <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 mb-6">
-                <Image src="/brain.png" alt="AI Brain" width={40} height={40} className="w-14" />
+                <Image
+                  src="/brain.png"
+                  alt="AI Brain"
+                  width={40}
+                  height={40}
+                  className="w-14"
+                />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-center">Get Expert Advice</h3>
+              <h3 className="text-2xl font-bold mb-4 text-center">
+                Get Expert Advice
+              </h3>
               <p className="text-muted-foreground text-center leading-relaxed mb-6">
-                Receive personalized recommendations based on thousands of dental cases. Our AI
-                provides professional-grade insights.
+                Receive personalized recommendations based on thousands of
+                dental cases. Our AI provides professional-grade insights.
               </p>
 
               {/* Feature Pills */}
@@ -107,13 +126,21 @@ function HowItWorks() {
 
               {/* Icon */}
               <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 mb-6">
-                <Image src="/calendar.png" alt="Calendar" width={40} height={40} className="w-14" />
+                <Image
+                  src="/calendar.png"
+                  alt="Calendar"
+                  width={40}
+                  height={40}
+                  className="w-14"
+                />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-center">Book & Get Care</h3>
+              <h3 className="text-2xl font-bold mb-4 text-center">
+                Book & Get Care
+              </h3>
               <p className="text-muted-foreground text-center leading-relaxed mb-6">
-                Schedule with verified dentists and receive comprehensive follow-up care. Track your
-                progress seamlessly.
+                Schedule with verified dentists and receive comprehensive
+                follow-up care. Track your progress seamlessly.
               </p>
 
               {/* Feature Pills */}

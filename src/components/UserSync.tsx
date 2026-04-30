@@ -1,8 +1,8 @@
 "use client";
 
-import { syncUser } from "@/lib/actions/users";
 import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
+import { syncUser } from "@/lib/actions/users";
 
 function UserSync() {
   const { isSignedIn, isLoaded } = useUser();

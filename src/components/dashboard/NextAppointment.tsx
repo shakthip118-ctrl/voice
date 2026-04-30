@@ -1,8 +1,8 @@
-import { getUserAppointments } from "@/lib/actions/appointments";
 import { format, isAfter, isSameDay, parseISO } from "date-fns";
-import NoNextAppointments from "./NoNextAppointments";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
+import { getUserAppointments } from "@/lib/actions/appointments";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import NoNextAppointments from "./NoNextAppointments";
 
 async function NextAppointment() {
   const appointments = await getUserAppointments();
@@ -12,7 +12,8 @@ async function NextAppointment() {
     appointments?.filter((appointment) => {
       const appointmentDate = parseISO(appointment.date);
       const today = new Date();
-      const isUpcoming = isSameDay(appointmentDate, today) || isAfter(appointmentDate, today);
+      const isUpcoming =
+        isSameDay(appointmentDate, today) || isAfter(appointmentDate, today);
       return isUpcoming && appointment.status === "CONFIRMED";
     }) || [];
 
@@ -54,8 +55,12 @@ async function NextAppointment() {
               <UserIcon className="size-4 text-primary" />
             </div>
             <div>
-              <p className="font-medium text-sm">{nextAppointment.doctorName}</p>
-              <p className="text-xs text-muted-foreground">{nextAppointment.reason}</p>
+              <p className="font-medium text-sm">
+                {nextAppointment.doctorName}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {nextAppointment.reason}
+              </p>
             </div>
           </div>
 

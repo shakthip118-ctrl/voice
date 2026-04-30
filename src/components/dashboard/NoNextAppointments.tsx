@@ -1,7 +1,7 @@
 import { CalendarIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 function NoNextAppointments() {
   return (

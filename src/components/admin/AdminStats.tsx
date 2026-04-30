@@ -1,5 +1,5 @@
+import { Calendar, Clock, UserCheck, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Calendar, UserCheck, Clock } from "lucide-react";
 
 interface AdminStatsProps {
   totalDoctors: number;
@@ -38,7 +38,9 @@ function AdminStats({
             </div>
             <div>
               <div className="text-2xl font-bold">{activeDoctors}</div>
-              <div className="text-sm text-muted-foreground">Active Doctors</div>
+              <div className="text-sm text-muted-foreground">
+                Active Doctors
+              </div>
             </div>
           </div>
         </CardContent>
@@ -52,7 +54,9 @@ function AdminStats({
             </div>
             <div>
               <div className="text-2xl font-bold">{totalAppointments}</div>
-              <div className="text-sm text-muted-foreground">Total Appointments</div>
+              <div className="text-sm text-muted-foreground">
+                Total Appointments
+              </div>
             </div>
           </div>
         </CardContent>
@@ -66,7 +70,9 @@ function AdminStats({
             </div>
             <div>
               <div className="text-2xl font-bold">{completedAppointments}</div>
-              <div className="text-sm text-muted-foreground">Completed Appointments</div>
+              <div className="text-sm text-muted-foreground">
+                Completed Appointments
+              </div>
             </div>
           </div>
         </CardContent>

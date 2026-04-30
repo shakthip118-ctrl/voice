@@ -1,8 +1,8 @@
+import { CrownIcon, LockIcon, MicIcon } from "lucide-react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CrownIcon, LockIcon, MicIcon } from "lucide-react";
-import Link from "next/link";
 
 function ProPlanRequired() {
   return (
@@ -18,13 +18,17 @@ function ProPlanRequired() {
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
                   <LockIcon className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">Pro Feature</span>
+                  <span className="text-sm font-medium text-primary">
+                    Pro Feature
+                  </span>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-bold mb-2">Voice Assistant Access Required</h1>
+                  <h1 className="text-4xl font-bold mb-2">
+                    Voice Assistant Access Required
+                  </h1>
                   <p className="text-muted-foreground">
-                    Upgrade to AI Basic or AI Pro to unlock unlimited voice consultations with our
-                    AI dental assistant.
+                    Upgrade to AI Basic or AI Pro to unlock unlimited voice
+                    consultations with our AI dental assistant.
                   </p>
                 </div>
               </div>
@@ -47,8 +51,9 @@ function ProPlanRequired() {
 
             <h3 className="text-2xl font-bold mb-4">Upgrade Required</h3>
             <p className="text-muted-foreground mb-6">
-              The voice assistant feature is available to AI Pro and AI Basic subscribers. Get
-              instant dental advice through natural voice conversations.
+              The voice assistant feature is available to AI Pro and AI Basic
+              subscribers. Get instant dental advice through natural voice
+              conversations.
             </p>
 
             <div className="space-y-4 mb-6">

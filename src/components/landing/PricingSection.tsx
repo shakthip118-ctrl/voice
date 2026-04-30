@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { SignUpButton } from "@clerk/nextjs";
 import { CheckCircleIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function PricingSection() {
   return (
@@ -18,7 +18,9 @@ function PricingSection() {
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/5 to-primary/10 rounded-full border border-primary/10 backdrop-blur-sm mb-6">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            <span className="text-sm font-medium text-primary">Simple Pricing</span>
+            <span className="text-sm font-medium text-primary">
+              Simple Pricing
+            </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             <span className="bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
@@ -30,8 +32,8 @@ function PricingSection() {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Book appointments for free and upgrade for unlimited AI consultations. Perfect for
-            ongoing dental care.
+            Book appointments for free and upgrade for unlimited AI
+            consultations. Perfect for ongoing dental care.
           </p>
         </div>
 
@@ -47,7 +49,9 @@ function PricingSection() {
                     <span className="text-4xl font-bold">$0</span>
                     <span className="text-muted-foreground mb-1">/month</span>
                   </div>
-                  <p className="text-muted-foreground">Essential dental appointment booking</p>
+                  <p className="text-muted-foreground">
+                    Essential dental appointment booking
+                  </p>
                 </div>
                 <SignUpButton mode="modal">
                   <Button className="w-full py-3 bg-gradient-to-r from-muted to-muted/80 text-foreground rounded-xl font-semibold">
@@ -58,7 +62,9 @@ function PricingSection() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm">Unlimited appointment booking</span>
+                    <span className="text-sm">
+                      Unlimited appointment booking
+                    </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
@@ -92,10 +98,13 @@ function PricingSection() {
                   <h3 className="text-2xl font-bold">AI Basic</h3>
                   <div className="flex items-end gap-1">
                     <span className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                    $1.20           </span>
+                      $1.20{" "}
+                    </span>
                     <span className="text-muted-foreground mb-1">/month</span>
                   </div>
-                  <p className="text-muted-foreground">AI consultations + appointment booking</p>
+                  <p className="text-muted-foreground">
+                    AI consultations + appointment booking
+                  </p>
                 </div>
 
                 <Button className="w-full py-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/95 hover:to-primary/85 text-primary-foreground rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
@@ -142,7 +151,9 @@ function PricingSection() {
                     <span className="text-4xl font-bold">$12</span>
                     <span className="text-muted-foreground mb-1">/month</span>
                   </div>
-                  <p className="text-muted-foreground">Unlimited AI consultations</p>
+                  <p className="text-muted-foreground">
+                    Unlimited AI consultations
+                  </p>
                 </div>
 
                 <Button

@@ -1,14 +1,26 @@
 // src/app/voice/page.tsx
+
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import VapiWidget from "@/components/voice/VapiWidget";
-import ProPlanRequired from "@/components/voice/ProPlanRequired";
-import WelcomeSection from "@/components/voice/WelcomeSection";
+import SuppressDailyError from "@/components/SuppressDailyError"; // new
 import FeatureCards from "@/components/voice/FeatureCards";
-import { auth } from "@clerk/nextjs/server";
-import SuppressDailyError from "@/components/SuppressDailyError" // new
+import ProPlanRequired from "@/components/voice/ProPlanRequired";
+import VapiWidget from "@/components/voice/VapiWidget";
+import WelcomeSection from "@/components/voice/WelcomeSection";
 
 async function VoicePage() {
   const { has } = await auth();
+  const user = await currentUser();
+
+  if (!user) redirect("/");
+
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const userEmail = user.primaryEmailAddress?.emailAddress;
+
+  if (adminEmail && userEmail?.toLowerCase() === adminEmail.toLowerCase()) {
+    redirect("/admin");
+  }
 
   const hasProPlan = has({ plan: "ai_basic" }) || has({ plan: "ai_pro" });
 
@@ -16,7 +28,6 @@ async function VoicePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      
       {/* Suppress Daily 0.80.0 console error */}
       <SuppressDailyError />
 

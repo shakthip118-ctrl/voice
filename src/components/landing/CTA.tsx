@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { MicIcon, CalendarIcon } from "lucide-react";
 
 function CTA() {
   return (
@@ -15,7 +13,9 @@ function CTA() {
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-primary/5 to-primary/10 rounded-full border border-primary/10">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                <span className="text-xs font-medium text-primary">Ready When You Are</span>
+                <span className="text-xs font-medium text-primary">
+                  Ready When You Are
+                </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -29,11 +29,10 @@ function CTA() {
               </h2>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Join 1,200+ patients who trust our AI for instant guidance and personalized care.
+                Join 1,200+ patients who trust our AI for instant guidance and
+                personalized care.
               </p>
             </div>
-
-            
           </div>
 
           {/* Right Content - CTA Image */}

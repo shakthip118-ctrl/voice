@@ -1,11 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client-js"
- 
 }
 
 datasource db {
@@ -13,65 +7,88 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//use,doctor
 model User {
-  id        String @id @default(cuid())
-  clerkId   String @unique
-  email     String @unique
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
   firstName String?
   lastName  String?
   phone     String?
-  createdAt DateTime @default(now()) // member since mar 2026
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // relationships
   appointments Appointment[]
 
   @@map("users")
 }
 
 model Doctor {
-  id          String   @id @default(cuid())
-  name        String
-  email       String   @unique
-  phone       String
-  speciality  String
-  bio         String?
-  imageUrl    String?
-  gender      Gender
-  isActive    Boolean @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  phone      String
+  speciality String
+  bio        String?
+  imageUrl   String?
+  gender     Gender
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  // relationships
-  appointments Appointment[]
+  appointments   Appointment[]
+  availabilities Availability[] // ✅ IMPORTANT
 
   @@map("doctors")
-
 }
 
 model Appointment {
-  id          String            @id @default(cuid())
-  date        DateTime
-  time        String // store time as string i.e. 14:30
-  duration    Int               @default(30) // duration in minutes
-  status      AppointmentStatus @default(CONFIRMED)
-  notes       String?
-  reason      String? // reason for appointment - teeth cleaning? emergency visit? etc.
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id       String   @id @default(cuid())
+  date     DateTime
+  time     String? // ✅ nullable for emergency
+  duration Int      @default(30)
 
-  // foreign keys
-  userId String
+  status    AppointmentStatus @default(PENDING)
+  type      AppointmentType   @default(NORMAL)
+  isDeleted Boolean           @default(false)
+
+  notes  String?
+  reason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId   String
   doctorId String
 
-  // relationships
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
   @@map("appointments")
 }
 
+model Availability {
+  id           String   @id @default(cuid())
+  doctorId     String
+  date         DateTime
+  startTime    String
+  endTime      String
+  slotDuration Int      @default(30)
+
+  doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("availability")
+}
+
+/// ✅ KEEP YOUR OLD TABLE SAFE
+model playing_with_neon {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value Float? @db.Real
+
+  @@ignore // 🔥 IMPORTANT (prevents deletion)
+}
 
 enum Gender {
   MALE
@@ -79,6 +96,14 @@ enum Gender {
 }
 
 enum AppointmentStatus {
- CONFIRMED
- COMPLETED
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NOT_ATTENDED
+}
+
+enum AppointmentType {
+  NORMAL
+  EMERGENCY
 }
